@@ -1,10 +1,10 @@
-# 📘 Manual de LINQ — Proyecto GestionUsuarios
+#  Manual de LINQ — Proyecto GestionUsuarios
 
 Manual completo basado en el proyecto de clase **GestionUsuariosV2**, un sistema de gestión de pacientes construido en C# con arquitectura en capas.
 
 ---
 
-## 🗂️ Estructura del Manual
+##  Estructura del Manual
 
 ```
 manual-linq/
@@ -29,7 +29,7 @@ manual-linq/
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+##  Arquitectura del Proyecto
 
 El proyecto usa **5 capas** claramente separadas:
 
@@ -46,7 +46,7 @@ GestionUsuarios.slnx
 
 ---
 
-## 📚 Índice de Temas
+##  Índice de Temas
 
 | Capítulo | Tema | Archivo |
 |----------|------|---------|
@@ -63,24 +63,7 @@ GestionUsuarios.slnx
 | 11 | Ejercicios Resueltos | [Ver →](./11-ejercicios-resueltos/README.md) |
 | 12 | Git Workflow para el Proyecto | [Ver →](./12-git-workflow/README.md) |
 
----
-
-## 🚀 Cómo subir este manual a GitHub
-
-```bash
-# 1. Clonar tu repositorio
-git clone https://github.com/TU-USUARIO/manual-linq-gestionusuarios.git
-cd manual-linq-gestionusuarios
-
-# 2. Copiar todas estas carpetas dentro del repositorio
-# (copia todo el contenido de manual-linq/ aquí)
-
-# 3. Subir todo
-git add .
-git commit -m "feat: agrega manual completo de LINQ basado en GestionUsuarios"
-git push origin main
-```
 
 ---
 
-*Manual basado en el proyecto GestionUsuariosV2 — Programación Avanzada*
+*Manual LINQ basado en el proyecto GestionUsuariosV2 comparando con las diferentes tecnologías de manipulacion de datos en la capa de datos — Programación Avanzada*
