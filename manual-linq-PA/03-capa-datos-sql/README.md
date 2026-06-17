@@ -4,7 +4,7 @@
 
 Esta es la implementación más básica: se usa `SqlConnection` y `SqlCommand` para ejecutar SQL directamente. No hay ORM. El desarrollador escribe el SQL a mano.
 
-> 🔑 **Cuándo usarla:** Cuando necesitas control total del SQL, consultas muy complejas o rendimiento máximo.
+>  **Cuándo usarla:** Cuando necesitas control total del SQL, consultas muy complejas o rendimiento máximo.
 
 ---
 

@@ -4,7 +4,7 @@
 
 Son clases **POCO** (Plain Old C# Objects) que representan los datos del sistema. No tienen lógica, no acceden a la base de datos: solo transportan información entre capas. También se les llama **DTOs** (Data Transfer Objects).
 
-> 💡 **Regla clave:** Esta capa NO referencia ninguna otra capa del proyecto. Todos la usan, ella no usa a nadie.
+>  **Regla clave:** Esta capa NO referencia ninguna otra capa del proyecto. Todos la usan, ella no usa a nadie.
 
 ## Entidades del proyecto
 
@@ -167,10 +167,10 @@ return new PacienteEntidades("Error al conectar con la base de datos");
 
 ```csharp
 // En lugar de:
-public int Id_Enfermedad { get; set; }       // ❌ Solo el ID, necesitas otro query
+public int Id_Enfermedad { get; set; }       //  Solo el ID, necesitas otro query
 
 // El proyecto usa:
-public EnfermedadEntidades Enfermedad { get; set; }  // ✅ El objeto completo
+public EnfermedadEntidades Enfermedad { get; set; }  //  El objeto completo
 
 // Uso:
 var detalle = new Paciente_Enfermedad_Entidades();

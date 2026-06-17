@@ -4,14 +4,14 @@ Todos estos errores aparecieron (o pueden aparecer) en el proyecto GestionUsuari
 
 ---
 
-## ❌ Error 1: `NullReferenceException` al hacer clic en la grilla
+##  Error 1: `NullReferenceException` al hacer clic en la grilla
 
 **Dónde aparece:** `Form_Paciente.cs` → `dataGridView1_CellClick`
 
 **Causa:** Se hace clic en el encabezado de la columna (fila -1), o la celda "id" no existe.
 
 ```csharp
-// ❌ Código problemático
+//  Código problemático
 private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
 {
     var id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString());
@@ -20,7 +20,7 @@ private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
 }
 ```
 
-**✅ Solución:** Validar el índice de fila antes de procesar
+**Solución:** Validar el índice de fila antes de procesar
 
 ```csharp
 private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -47,22 +47,22 @@ private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
 
 ---
 
-## ❌ Error 2: `InvalidOperationException` — ComboBox sin selección al guardar
+## Error 2: `InvalidOperationException` — ComboBox sin selección al guardar
 
 **Dónde aparece:** `Form_Paciente.cs` → `GuardarPaciente()`
 
 **Causa:** El usuario no seleccionó un género, y `cb_Genero.SelectedValue` es null.
 
 ```csharp
-// ❌ Código problemático
+//  Código problemático
 paciente.IdGenero = Convert.ToInt32(cb_Genero.SelectedValue);
 // Si SelectedValue es null → Convert.ToInt32(null) → FormatException
 ```
 
-**✅ Solución:** Verificar antes de convertir
+** Solución:** Verificar antes de convertir
 
 ```csharp
-// ✅ Validar que haya selección
+//  Validar que haya selección
 if (cb_Genero.SelectedValue == null)
 {
     MessageBox.Show("Debe seleccionar un género.", "Campo requerido",
@@ -76,21 +76,21 @@ paciente.IdGenero = Convert.ToInt32(cb_Genero.SelectedValue);
 
 ---
 
-## ❌ Error 3: `ListaEnfermedades` es null al guardar
+##  Error 3: `ListaEnfermedades` es null al guardar
 
 **Dónde aparece:** `GestionUsuariosDatosEF/PacienteDatosEF.cs` → `Nuevo()`
 
 **Causa:** `paciente.ListaEnfermedades` nunca fue inicializado y se intenta hacer `foreach` sobre él.
 
 ```csharp
-// ❌ Código problemático
+//  Código problemático
 foreach (var item in paciente.ListaEnfermedades) // NullReferenceException si es null
 {
     item.Id_Paciente = pacienteEF.id;
 }
 ```
 
-**✅ Solución A (en la capa de datos):** Null check antes del foreach
+** Solución A (en la capa de datos):** Null check antes del foreach
 
 ```csharp
 // Verificar que la lista no sea null antes de iterar
@@ -103,7 +103,7 @@ if (paciente.ListaEnfermedades != null)
 }
 ```
 
-**✅ Solución B (en el constructor de la entidad):** Inicializar la lista
+**Solución B (en el constructor de la entidad):** Inicializar la lista
 
 ```csharp
 public PacienteEntidades()
@@ -115,21 +115,21 @@ public PacienteEntidades()
 
 ---
 
-## ❌ Error 4: `SubmitChanges()` falla sin mensaje claro
+## Error 4: `SubmitChanges()` falla sin mensaje claro
 
 **Dónde aparece:** `GestionUsuariosDatosLINQ/PacienteDatos.cs`
 
 **Causa:** La restricción de la BD rechaza el dato (cédula duplicada, FK inválida, etc.) pero el `catch (Exception){ throw; }` re-lanza sin contexto.
 
 ```csharp
-// ❌ Código problemático — pierde información del error
+// Código problemático — pierde información del error
 catch (Exception)
 {
     throw; // Solo relanza, no agrega contexto
 }
 ```
 
-**✅ Solución:** Capturar y enriquecer el error
+**Solución:** Capturar y enriquecer el error
 
 ```csharp
 catch (Exception ex)
@@ -141,19 +141,19 @@ catch (Exception ex)
 
 ---
 
-## ❌ Error 5: `ObjectDisposedException` — usar el contexto fuera del `using`
+## Error 5: `ObjectDisposedException` — usar el contexto fuera del `using`
 
 **Dónde aparece:** Al intentar acceder a propiedades de navegación EF fuera del contexto.
 
 ```csharp
-// ❌ Código problemático
+//  Código problemático
 List<Paciente> lista;
 using (ProgramacionAvanzadaEntities contexto = new ProgramacionAvanzadaEntities())
 {
     lista = contexto.Paciente.ToList(); // ← SIN Include
 }
 
-// ❌ AQUÍ el contexto ya está cerrado (disposed)
+//  AQUÍ el contexto ya está cerrado (disposed)
 foreach (var p in lista)
 {
     // Lazy loading intenta abrir conexión → ObjectDisposedException
@@ -161,7 +161,7 @@ foreach (var p in lista)
 }
 ```
 
-**✅ Solución:** Usar `Include()` DENTRO del `using`
+**Solución:** Usar `Include()` DENTRO del `using`
 
 ```csharp
 List<Paciente> lista;
@@ -171,7 +171,7 @@ using (ProgramacionAvanzadaEntities contexto = new ProgramacionAvanzadaEntities(
     lista = contexto.Paciente.Include("Genero").ToList();
 }
 
-// ✅ Ahora Genero ya está en memoria, no necesita conexión
+// Ahora Genero ya está en memoria, no necesita conexión
 foreach (var p in lista)
 {
     string nombreGenero = p.Genero?.nombre ?? "N/A"; // ✅ Seguro
@@ -180,19 +180,19 @@ foreach (var p in lista)
 
 ---
 
-## ❌ Error 6: `First()` lanza excepción cuando no hay resultados
+## Error 6: `First()` lanza excepción cuando no hay resultados
 
 **Dónde aparece:** En cualquier consulta que use `.First()` en lugar de `.FirstOrDefault()`
 
 ```csharp
-// ❌ Si no existe el paciente con ese ID → InvalidOperationException
+// Si no existe el paciente con ese ID → InvalidOperationException
 Paciente p = contexto.Pacientes.First(x => x.id == id);
 ```
 
-**✅ Solución:** Siempre usar `FirstOrDefault()` y verificar null
+**Solución:** Siempre usar `FirstOrDefault()` y verificar null
 
 ```csharp
-// ✅ Devuelve null si no existe, en lugar de lanzar excepción
+// Devuelve null si no existe, en lugar de lanzar excepción
 Paciente p = contexto.Pacientes.FirstOrDefault(x => x.id == id);
 
 if (p == null)
@@ -205,19 +205,19 @@ if (p == null)
 
 ---
 
-## ❌ Error 7: `ToList()` antes de filtrar (rendimiento con EF)
+## Error 7: `ToList()` antes de filtrar (rendimiento con EF)
 
 ```csharp
-// ❌ Trae TODOS los pacientes a memoria y luego filtra en C#
+// Trae TODOS los pacientes a memoria y luego filtra en C#
 var todosPacientes = contexto.Paciente.ToList();
 var ambatenos = todosPacientes.Where(p => p.direccion == "Ambato");
 // Si hay 100,000 pacientes → carga 100,000 filas para quedarse con 5
 ```
 
-**✅ Solución:** Filtrar ANTES de `ToList()`
+**Solución:** Filtrar ANTES de `ToList()`
 
 ```csharp
-// ✅ El filtro se ejecuta en la BD — solo trae los que coinciden
+// El filtro se ejecuta en la BD — solo trae los que coinciden
 var ambatenos = contexto.Paciente
                         .Where(p => p.direccion == "Ambato")
                         .ToList();
@@ -226,17 +226,17 @@ var ambatenos = contexto.Paciente
 
 ---
 
-## ❌ Error 8: Conexión que nunca se cierra (ADO.NET)
+## Error 8: Conexión que nunca se cierra (ADO.NET)
 
 ```csharp
-// ❌ Si ocurre una excepción entre Open() y Close(), la conexión queda abierta
+// Si ocurre una excepción entre Open() y Close(), la conexión queda abierta
 SqlConnection conexion = new SqlConnection(connectionString);
 conexion.Open();
 // ... código que puede fallar ...
 conexion.Close(); // ← Nunca llega aquí si hay excepción arriba
 ```
 
-**✅ Solución:** Usar `using` o `try/finally`
+**Solución:** Usar `using` o `try/finally`
 
 ```csharp
 // Opción A — using (recomendado): cierra automáticamente al salir del bloque
@@ -262,21 +262,21 @@ finally
 
 ---
 
-## ❌ Error 9: `cb_Genero.SelectedIndex = -1` causa problemas al cargar
+## Error 9: `cb_Genero.SelectedIndex = -1` causa problemas al cargar
 
 **Dónde aparece:** `Form_Paciente.cs` → `CargarComboGenero()`
 
 **Causa:** Poner `SelectedIndex = -1` después de asignar el `DataSource` dispara el evento `SelectedIndexChanged` con valor null.
 
 ```csharp
-// ❌ El evento SelectedIndexChanged se dispara con valor null
+// El evento SelectedIndexChanged se dispara con valor null
 cb_Genero.DataSource      = GeneroNegocio.DevolverListaGeneros();
 cb_Genero.DisplayMember   = "nombre";
 cb_Genero.ValueMember     = "id";
 cb_Genero.SelectedIndex   = -1; // ← Puede causar problemas si hay handler
 ```
 
-**✅ Solución:** Desuscribir el evento mientras se configura
+**Solución:** Desuscribir el evento mientras se configura
 
 ```csharp
 // Desuscribir temporalmente el evento

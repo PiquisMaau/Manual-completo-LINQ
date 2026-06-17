@@ -172,17 +172,13 @@ public static PacienteEntidades ObtenerFichaCompletaPaciente(int idPaciente)
 // Uso e impresión del resumen
 PacienteEntidades ficha = PacienteNegocio.ObtenerFichaCompletaPaciente(1);
 
-Console.WriteLine("╔══════════════════════════════════════╗");
 Console.WriteLine($"║  FICHA DE PACIENTE — ID: {ficha.Id,-10} ║");
-Console.WriteLine("╠══════════════════════════════════════╣");
 Console.WriteLine($"║  Nombre:   {ficha.Nombre + " " + ficha.Apellido,-26}║");
 Console.WriteLine($"║  Cédula:   {ficha.Cedula,-26}║");
 Console.WriteLine($"║  Género:   {ficha.Genero,-26}║");
 Console.WriteLine($"║  Ciudad:   {ficha.Direccion,-26}║");
 Console.WriteLine($"║  IESS:     {(ficha.Afiliado ? ficha.CodigoIEES : "No afiliado"),-26}║");
-Console.WriteLine("╠══════════════════════════════════════╣");
 Console.WriteLine("║  HISTORIAL MÉDICO                    ║");
-Console.WriteLine("╠══════════════════════════════════════╣");
 
 if (ficha.ListaEnfermedades?.Any() == true)
 {
@@ -195,10 +191,16 @@ if (ficha.ListaEnfermedades?.Any() == true)
 }
 else
 {
-    Console.WriteLine("║  Sin enfermedades registradas        ║");
+    Console.WriteLine("!!!!!  Sin enfermedades registradas  !!!!!");
+        Console.WriteLine("!!!!!  Disfruta de tu vida :)  !!!!!");
+            Console.WriteLine("!!!!!  Que no te importe el qué dirán  !!!!!");
+                Console.WriteLine("!!!!!  Te quiero mucho  !!!!!");
+                    Console.WriteLine("!!!!!  Recuerda: Tu salud es lo más importante  !!!!!");
+
+
+
 }
 
-Console.WriteLine("╚══════════════════════════════════════╝");
 ```
 
 ---
@@ -333,7 +335,7 @@ public static void ExportarPacientesCSV(List<PacienteEntidades> pacientes, strin
 
     File.WriteAllText(rutaArchivo, contenidoCSV, System.Text.Encoding.UTF8);
 
-    Console.WriteLine($"✅ Exportados {pacientes.Count} pacientes a: {rutaArchivo}");
+    Console.WriteLine($"Exportados {pacientes.Count} pacientes a: {rutaArchivo}");
 }
 
 // Uso desde el formulario (botón "Exportar")
@@ -390,9 +392,7 @@ public static void MostrarEstadisticasGlobales(
         .FirstOrDefault() ?? "N/A";
 
     // Imprimir dashboard de texto
-    Console.WriteLine("╔══════════════════════════════════════════╗");
     Console.WriteLine("║        ESTADÍSTICAS DEL SISTEMA          ║");
-    Console.WriteLine("╠══════════════════════════════════════════╣");
     Console.WriteLine($"║  Total pacientes     : {totalPacientes,-19}║");
     Console.WriteLine($"║  Afiliados IESS      : {afiliados,-19}║");
     Console.WriteLine($"║  No afiliados        : {noAfiliados,-19}║");
@@ -402,7 +402,6 @@ public static void MostrarEstadisticasGlobales(
     Console.WriteLine($"║  Registros historial : {totalRegistrosHistorial,-19}║");
     Console.WriteLine($"║  Enfermedad frecuente: {enfermedadMasFrecuente,-19}║");
     Console.WriteLine($"║  Ciudad con + pacient: {ciudadConMasPacientes,-19}║");
-    Console.WriteLine("╚══════════════════════════════════════════╝");
 }
 ```
 

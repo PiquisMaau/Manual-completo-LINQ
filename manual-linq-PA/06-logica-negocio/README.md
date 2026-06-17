@@ -4,7 +4,7 @@
 
 Esta capa es el **árbitro** del sistema. Recibe peticiones de la Presentación, aplica las reglas del dominio y delega a la capa de Datos. Nunca interactúa directamente con la interfaz ni con SQL.
 
-> 🔑 **Responsabilidad principal:** Validar que los datos sean correctos ANTES de tocar la base de datos.
+>  **Responsabilidad principal:** Validar que los datos sean correctos ANTES de tocar la base de datos.
 
 ---
 

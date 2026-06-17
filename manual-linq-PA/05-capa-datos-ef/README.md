@@ -4,7 +4,7 @@
 
 Entity Framework (EF) es el ORM completo de Microsoft. En este proyecto se usa **EF6 Database-First**: el modelo se genera desde una base de datos existente (archivo `.edmx`).
 
-> 🔑 **Cuándo usarla:** Proyectos medianos/grandes donde quieres aprovechar el Change Tracking, relaciones automáticas, Migrations, y consultas más expresivas.
+>  **Cuándo usarla:** Proyectos medianos/grandes donde quieres aprovechar el Change Tracking, relaciones automáticas, Migrations, y consultas más expresivas.
 
 ---
 

@@ -4,7 +4,7 @@
 
 La capa de presentación es el formulario que el usuario ve y maneja. En este proyecto es Windows Forms (.NET Framework 4.8). Su única responsabilidad es **capturar datos del usuario** y **mostrar resultados** — NUNCA debe acceder a la BD directamente.
 
-> 🔑 **Regla de oro:** El Form solo llama a la capa de Negocio, nunca a la capa de Datos.
+>  **Regla de oro:** El Form solo llama a la capa de Negocio, nunca a la capa de Datos.
 
 ---
 

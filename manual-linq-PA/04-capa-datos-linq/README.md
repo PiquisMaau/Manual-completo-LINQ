@@ -4,7 +4,7 @@
 
 LINQ to SQL es un ORM ligero de Microsoft que genera clases C# a partir de las tablas de tu base de datos. El archivo `.dbml` (Database Markup Language) define el mapeo. En este proyecto se llama `DataProgramacionAvanzada.dbml`.
 
-> 🔑 **Cuándo usarla:** Proyectos pequeños/medianos con SQL Server, cuando quieres evitar escribir SQL a mano pero no necesitas toda la potencia de EF.
+>  **Cuándo usarla:** Proyectos pequeños/medianos con SQL Server, cuando quieres evitar escribir SQL a mano pero no necesitas toda la potencia de EF.
 
 ---
 
