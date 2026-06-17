@@ -6,27 +6,32 @@ Bienvenido a este manual completo y práctico sobre **LINQ (Language Integrated 
 
 ## ¿Qué es LINQ y por qué aprenderlo?
 
-**LINQ** es una característica fundamental de .NET que permite realizar consultas a diferentes fuentes de datos (colecciones en memoria, bases de datos SQL, archivos XML, etc.) utilizando una sintaxis uniforme, declarativa e integrada directamente en el lenguaje C#. Gracias a LINQ, las consultas pasan a formar parte del propio lenguaje, permitiendo escribir código más legible, mantenible y validado en tiempo de compilación.
+**LINQ** es una característica fundamental de .NET que permite realizar consultas a diferentes fuentes de datos utilizando una sintaxis uniforme, declarativa e integrada directamente en el lenguaje C#. Gracias a LINQ, las consultas pasan a formar parte del propio lenguaje, permitiendo escribir código más legible, mantenible y validado en tiempo de compilación.
 
 Con LINQ es posible consultar diferentes fuentes de datos, entre ellas:
 
-Colecciones en memoria (List<T>)
-Bases de datos SQL Server
-Entity Framework
-Archivos XML
-Datos en formato JSON
-Servicios externos
-Cualquier origen compatible con IEnumerable o IQueryable
+* Colecciones en memoria (`List<T>`)
+* Bases de datos SQL Server
+* Entity Framework
+* Archivos XML
+* Datos en formato JSON
+* Servicios externos
+* Cualquier origen compatible con `IEnumerable` o `IQueryable`
 
-Por ejemplo:
+**Por ejemplo:**
 
+```csharp
 var pacientesMayores = pacientes
     .Where(p => p.Edad >= 18)
     .OrderBy(p => p.Nombre);
 
+```
+
 Este enfoque permite reemplazar estructuras repetitivas y consultas SQL escritas manualmente por código más limpio, expresivo y fácil de mantener.
 
 Aprender LINQ transforma la forma en que interactúas con los datos: pasas de escribir bucles complejos y consultas SQL en formato de texto (propensas a errores), a escribir código fuertemente tipado, limpio, legible y validado en tiempo de compilación.
+
+---
 
 ## ¿Por qué basar este manual en un proyecto de clase?
 
@@ -34,47 +39,41 @@ La teoría por sí sola rara vez es suficiente. Este manual no utiliza ejemplos 
 
 Aplicar LINQ sobre un proyecto estructurado en capas (Entidades, Datos, Lógica de Negocio y Presentación WinForms) permite entender cómo se comunican los componentes en una aplicación de nivel empresarial y cómo LINQ facilita el flujo de información entre la base de datos y la interfaz gráfica.
 
-## El valor de la comparativa: ADO.NET vs LINQ vs EF
+---
+
+## El valor de la comparativa: ADO.NET vs LINQ vs Entity Framework
 
 Una de las fortalezas de este manual es la comparación directa entre tres tecnologías de acceso a datos dentro de la misma arquitectura:
 
-ADO.NET Puro
+### ADO.NET Puro
 
-Representa el acceso tradicional a bases de datos mediante componentes como:
+Representa el acceso tradicional a bases de datos mediante componentes clave. Este enfoque permite comprender los fundamentos de la comunicación entre una aplicación .NET y SQL Server.
 
-SqlConnection
-SqlCommand
-SqlDataReader
-Consultas SQL escritas manualmente
+* `SqlConnection`
+* `SqlCommand`
+* `SqlDataReader`
+* Consultas SQL escritas manualmente
 
-Este enfoque permite comprender los fundamentos de la comunicación entre una aplicación .NET y SQL Server.
+### LINQ to SQL
 
-LINQ to SQL
+Introduce el concepto de mapeo objeto-relacional (ORM) y constituye un puente entre ADO.NET tradicional y las tecnologías ORM modernas, permitiendo:
 
-Introduce el concepto de mapeo objeto-relacional (ORM), permitiendo:
+* Mapeo automático de tablas a clases
+* Consultas utilizando sintaxis de C#
+* Reducción significativa de código repetitivo
+* Integración directa con LINQ
 
-Mapeo automático de tablas a clases
-Consultas utilizando sintaxis de C#
-Reducción significativa de código repetitivo
-Integración directa con LINQ
+### Entity Framework
 
-Constituye un puente entre ADO.NET tradicional y las tecnologías ORM modernas.
+Es la tecnología ORM más utilizada en el ecosistema .NET y amplía las capacidades de LINQ. Su uso permite desarrollar aplicaciones más mantenibles, escalables y alineadas con las prácticas actuales de la industria del software mediante:
 
-Entity Framework
+* `DbContext`
+* `DbSet`
+* Migraciones
+* Consultas LINQ avanzadas
+* Gestión automática de relaciones entre entidades
 
-Es la tecnología ORM más utilizada en el ecosistema .NET y amplía las capacidades de LINQ mediante:
-
-DbContext
-DbSet
-Migraciones
-Consultas LINQ avanzadas
-Gestión automática de relaciones entre entidades
-
-Su uso permite desarrollar aplicaciones más mantenibles, escalables y alineadas con las prácticas actuales de la industria del software.
-
-Comparar estas tecnologías proporciona criterio técnico para comprender qué herramienta utilizar, cuándo utilizarla y por qué.
-
----
+> **Conclusión:** Comparar estas tecnologías proporciona criterio técnico para comprender qué herramienta utilizar, cuándo utilizarla y por qué.
 
 ## Estructura del Manual
 
