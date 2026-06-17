@@ -7,7 +7,7 @@ Aquí las vemos lado a lado para entender qué cambia y qué permanece igual.
 
 ## La misma operación en las 3 tecnologías: Listar Pacientes
 
-### 🟥 ADO.NET (SQL Puro) — `GestionUsuariosDatos/PacienteDatos.cs`
+###  ADO.NET (SQL Puro) — `GestionUsuariosDatos/PacienteDatos.cs`
 
 ```csharp
 public static List<PacienteEntidades> DevolverListaPaciente()
@@ -58,7 +58,7 @@ public static List<PacienteEntidades> DevolverListaPaciente()
 
 ---
 
-### 🟨 LINQ to SQL — `GestionUsuariosDatosLINQ/PacienteDatos.cs`
+###  LINQ to SQL — `GestionUsuariosDatosLINQ/PacienteDatos.cs`
 
 ```csharp
 public static List<PacienteEntidades> DevolverListaPaciente()
@@ -95,7 +95,7 @@ public static List<PacienteEntidades> DevolverListaPaciente()
 
 ---
 
-### 🟩 Entity Framework — `GestionUsuariosDatosEF/PacienteDatosEF.cs`
+###  Entity Framework — `GestionUsuariosDatosEF/PacienteDatosEF.cs`
 
 ```csharp
 public static List<PacienteEntidades> DevolverListaEntidades()
@@ -147,20 +147,6 @@ public static List<PacienteEntidades> DevolverListaEntidades()
 | **LINQ to SQL** | `contexto.Pacientes.DeleteOnSubmit(obj)` + `SubmitChanges()` |
 | **EF** | `contexto.Paciente.Remove(obj)` + `SaveChanges()` |
 
----
-
-## Tabla de decisión: ¿Cuál usar?
-
-| Criterio | ADO.NET | LINQ to SQL | Entity Framework |
-|----------|---------|-------------|-----------------|
-| **Velocidad de escritura** | ❌ Lenta (mucho código) | ✅ Rápida | ✅ Rápida |
-| **Control total del SQL** | ✅ Total | ⚠️ Parcial | ⚠️ Parcial |
-| **Relaciones (JOIN/Include)** | Manual (SQL) | Limitado | ✅ Potente (Include) |
-| **Transacciones** | Manual (`SqlTransaction`) | Manual | ✅ `TransactionScope` |
-| **Curva de aprendizaje** | Baja | Media | Media-Alta |
-| **Rendimiento** | ✅ Máximo | ✅ Bueno | ⚠️ Overhead del ORM |
-| **Mantenimiento** | ❌ Difícil (strings SQL) | ✅ Fácil | ✅ Fácil |
-| **Proyectos grandes** | ❌ Difícil de escalar | ⚠️ Limitado | ✅ Ideal |
 
 ---
 
@@ -169,29 +155,29 @@ public static List<PacienteEntidades> DevolverListaEntidades()
 En `GestionUsuariosLogicaNegocio/PacienteNegocio.cs`:
 
 ```csharp
-// ═══════════════════════════════════════════════
+
 // OPCIÓN A — Usar ADO.NET puro
-// ═══════════════════════════════════════════════
+
 using GestionUsuariosDatos;
 // resultado = PacienteDatos.Nuevo(paciente);
 // resultado = PacienteDatos.DevolverListaPaciente();
 
-// ═══════════════════════════════════════════════
+
 // OPCIÓN B — Usar LINQ to SQL
-// ═══════════════════════════════════════════════
+
 using GestionUsuariosDatosLINQ;
 // resultado = PacienteDatos.Nuevo(paciente);
 // resultado = PacienteDatos.DevolverListaPaciente();
 
-// ═══════════════════════════════════════════════
+
 // OPCIÓN C — Usar Entity Framework (ACTUALMENTE ACTIVO)
-// ═══════════════════════════════════════════════
+
 using GestionUsuariosDatosEF;
 resultado = PacienteDatosEF.Nuevo(paciente);
 resultado = PacienteDatosEF.DevolverListaEntidades();
 ```
 
-> 💡 Esto es posible porque todas las capas de datos **devuelven el mismo tipo**: `PacienteEntidades`. La capa de Negocio no sabe (ni le importa) cuál tecnología usa la capa de Datos.
+>  Esto es posible porque todas las capas de datos **devuelven el mismo tipo**: `PacienteEntidades`. La capa de Negocio no sabe (ni le importa) cuál tecnología usa la capa de Datos.
 
 ---
 
