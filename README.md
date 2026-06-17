@@ -136,7 +136,7 @@ GestionUsuarios.slnx
 
 ---
 
-**Desarrollado por:** Mauro Sebastián Pico Solís
+**Desarrollado por:** Mauro Sebastián Pico Solis
 
 **Estudiante de Ingeniería en Tecnologías de la Información**
 Universidad Técnica de Ambato (UTA)
