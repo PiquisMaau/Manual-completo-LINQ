@@ -54,7 +54,6 @@ manual-linq/
 
 El proyecto usa **5 capas** separadas:
 
-```
 GestionUsuarios.slnx
 │
 ├── GestionUsuariosEntidades          ← Capa 1: Modelos / DTOs
@@ -63,7 +62,6 @@ GestionUsuarios.slnx
 ├── GestionUsuariosDatosEF            ← Capa 2c: Datos con Entity Framework
 ├── GestionUsuariosLogicaNegocio      ← Capa 3: Reglas de negocio
 └── GestionUsuariosPresentacion       ← Capa 4: Interfaz de usuario (WinForms)
-```
 
 ---
 
