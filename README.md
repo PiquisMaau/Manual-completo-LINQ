@@ -6,24 +6,73 @@ Bienvenido a este manual completo y práctico sobre **LINQ (Language Integrated 
 
 ## ¿Qué es LINQ y por qué aprenderlo?
 
-**LINQ** es una característica fundamental de .NET que permite realizar consultas a diferentes fuentes de datos (colecciones en memoria, bases de datos SQL, archivos XML, etc.) utilizando una sintaxis uniforme, declarativa e integrada directamente en el lenguaje C#. 
+**LINQ** es una característica fundamental de .NET que permite realizar consultas a diferentes fuentes de datos (colecciones en memoria, bases de datos SQL, archivos XML, etc.) utilizando una sintaxis uniforme, declarativa e integrada directamente en el lenguaje C#. Gracias a LINQ, las consultas pasan a formar parte del propio lenguaje, permitiendo escribir código más legible, mantenible y validado en tiempo de compilación.
+
+Con LINQ es posible consultar diferentes fuentes de datos, entre ellas:
+
+Colecciones en memoria (List<T>)
+Bases de datos SQL Server
+Entity Framework
+Archivos XML
+Datos en formato JSON
+Servicios externos
+Cualquier origen compatible con IEnumerable o IQueryable
+
+Por ejemplo:
+
+var pacientesMayores = pacientes
+    .Where(p => p.Edad >= 18)
+    .OrderBy(p => p.Nombre);
+
+Este enfoque permite reemplazar estructuras repetitivas y consultas SQL escritas manualmente por código más limpio, expresivo y fácil de mantener.
 
 Aprender LINQ transforma la forma en que interactúas con los datos: pasas de escribir bucles complejos y consultas SQL en formato de texto (propensas a errores), a escribir código fuertemente tipado, limpio, legible y validado en tiempo de compilación.
 
 ## ¿Por qué basar este manual en un proyecto de clase?
 
-La teoría por sí sola rara vez es suficiente. Este manual no utiliza ejemplos abstractos, sino que está construido directamente sobre **GestionUsuariosV2**, un sistema CRUD real de gestión de pacientes desarrollado en clases. 
+La teoría por sí sola rara vez es suficiente. Este manual no utiliza ejemplos abstractos, sino que está construido directamente sobre **GestionUsuariosV2**, un sistema CRUD real de gestión de pacientes desarrollado en clases.
 
 Aplicar LINQ sobre un proyecto estructurado en capas (Entidades, Datos, Lógica de Negocio y Presentación WinForms) permite entender cómo se comunican los componentes en una aplicación de nivel empresarial y cómo LINQ facilita el flujo de información entre la base de datos y la interfaz gráfica.
 
 ## El valor de la comparativa: ADO.NET vs LINQ vs EF
 
-Una de las joyas de este manual es la comparación directa entre tres tecnologías de acceso a datos en la misma arquitectura:
-1. **ADO.NET Puro:** Entender la base. Escribir comandos SQL a mano, usar `SqlDataReader` y manejar conexiones manualmente.
-2. **LINQ to SQL:** El puente. Ver cómo el mapeo objeto-relacional (ORM) básico nos permite usar sintaxis de C# para filtrar y proyectar datos desde SQL Server.
-3. **Entity Framework (EF):** El estándar moderno. Descubrir cómo evolucionó LINQ para manejar contextos completos y migraciones.
+Una de las fortalezas de este manual es la comparación directa entre tres tecnologías de acceso a datos dentro de la misma arquitectura:
 
-Comparar estas tecnologías te da el criterio técnico necesario para saber **qué herramienta usar, cuándo usarla y por qué**, un conocimiento invaluable para cualquier ingeniero de software.
+ADO.NET Puro
+
+Representa el acceso tradicional a bases de datos mediante componentes como:
+
+SqlConnection
+SqlCommand
+SqlDataReader
+Consultas SQL escritas manualmente
+
+Este enfoque permite comprender los fundamentos de la comunicación entre una aplicación .NET y SQL Server.
+
+LINQ to SQL
+
+Introduce el concepto de mapeo objeto-relacional (ORM), permitiendo:
+
+Mapeo automático de tablas a clases
+Consultas utilizando sintaxis de C#
+Reducción significativa de código repetitivo
+Integración directa con LINQ
+
+Constituye un puente entre ADO.NET tradicional y las tecnologías ORM modernas.
+
+Entity Framework
+
+Es la tecnología ORM más utilizada en el ecosistema .NET y amplía las capacidades de LINQ mediante:
+
+DbContext
+DbSet
+Migraciones
+Consultas LINQ avanzadas
+Gestión automática de relaciones entre entidades
+
+Su uso permite desarrollar aplicaciones más mantenibles, escalables y alineadas con las prácticas actuales de la industria del software.
+
+Comparar estas tecnologías proporciona criterio técnico para comprender qué herramienta utilizar, cuándo utilizarla y por qué.
 
 ---
 
@@ -31,29 +80,32 @@ Comparar estas tecnologías te da el criterio técnico necesario para saber **qu
 
 ```text
 manual-linq/
-├── README.md                      ← Este archivo (índice principal)
+├── README.md
 ├── 01-arquitectura-capas/
-│   └── README.md                  ← ¿Qué es la arquitectura en capas?
+│   └── README.md
 ├── 02-entidades/
-│   └── README.md                  ← Capa de Entidades (modelos)
+│   └── README.md
 ├── 03-capa-datos-sql/
-│   └── README.md                  ← Acceso a datos con ADO.NET puro
+│   └── README.md
 ├── 04-capa-datos-linq/
-│   └── README.md                  ← Acceso a datos con LINQ to SQL
+│   └── README.md
 ├── 05-capa-datos-ef/
-│   └── README.md                  ← Acceso a datos con Entity Framework
+│   └── README.md
 ├── 06-logica-negocio/
-│   └── README.md                  ← Capa de Lógica de Negocio
+│   └── README.md
 ├── 07-presentacion/
-│   └── README.md                  ← Capa de Presentación (WinForms)
+│   └── README.md
 └── 08-linq-consultas-avanzadas/
-    └── README.md                  ← Consultas LINQ avanzadas aplicadas
+    └── README.md
+```
+
 ---
 
-##  Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
-El proyecto usa **5 capas** separadas:
+El proyecto utiliza una arquitectura de cinco capas:
 
+```text
 GestionUsuarios.slnx
 │
 ├── GestionUsuariosEntidades          ← Capa 1: Modelos / DTOs
@@ -62,6 +114,7 @@ GestionUsuarios.slnx
 ├── GestionUsuariosDatosEF            ← Capa 2c: Datos con Entity Framework
 ├── GestionUsuariosLogicaNegocio      ← Capa 3: Reglas de negocio
 └── GestionUsuariosPresentacion       ← Capa 4: Interfaz de usuario (WinForms)
+```
 
 ---
 
@@ -82,11 +135,12 @@ GestionUsuarios.slnx
 | 11 | Ejercicios Resueltos | [Ver →](./manual-linq-PA/11-ejercicios-resueltos/README.md) |
 | 12 | Git Workflow para el Proyecto | [Ver →](./manual-linq-PA/12-git-workflow/README.md) |
 
-
 ---
 
-*Desarrollado por: Mauro Sebastián Pico Solís
+**Desarrollado por:** Mauro Sebastián Pico Solís
 
-Estudiante de Ingeniería en Tecnologías de la Información Universidad Técnica de Ambato (UTA) - Facultad de Ingeniería en Sistemas, Electrónica e Industrial (FISEI)*
+**Estudiante de Ingeniería en Tecnologías de la Información**
+Universidad Técnica de Ambato (UTA)
+Facultad de Ingeniería en Sistemas, Electrónica e Industrial (FISEI)
 
-*Manual LINQ basado en el proyecto GestionUsuariosV2 comparando con las diferentes tecnologías de manipulacion de datos en la capa de datos — Programación Avanzada*
+*Manual LINQ basado en el proyecto GestionUsuariosV2 comparando diferentes tecnologías de manipulación de datos en la capa de acceso a datos — Programación Avanzada.*
