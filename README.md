@@ -46,22 +46,22 @@ GestionUsuarios.slnx
 
 ---
 
-##  Índice de Temas
+## Índice de Temas
 
 | Capítulo | Tema | Archivo |
 |----------|------|---------|
-| 01 | Arquitectura en capas | [Ver →](./01-arquitectura-capas/README.md) |
-| 02 | Capa de Entidades | [Ver →](./02-entidades/README.md) |
-| 03 | Capa de Datos con ADO.NET | [Ver →](./03-capa-datos-sql/README.md) |
-| 04 | Capa de Datos con LINQ to SQL | [Ver →](./04-capa-datos-linq/README.md) |
-| 05 | Capa de Datos con Entity Framework | [Ver →](./05-capa-datos-ef/README.md) |
-| 06 | Lógica de Negocio | [Ver →](./06-logica-negocio/README.md) |
-| 07 | Capa de Presentación | [Ver →](./07-presentacion/README.md) |
-| 08 | Consultas LINQ Avanzadas | [Ver →](./08-linq-consultas-avanzadas/README.md) |
-| 09 | Comparativa: ADO.NET vs LINQ vs EF | [Ver →](./09-comparativa-tecnologias/README.md) |
-| 10 | Errores Comunes y Soluciones | [Ver →](./10-errores-comunes/README.md) |
-| 11 | Ejercicios Resueltos | [Ver →](./11-ejercicios-resueltos/README.md) |
-| 12 | Git Workflow para el Proyecto | [Ver →](./12-git-workflow/README.md) |
+| 01 | Arquitectura en capas | [Ver →](./manual-linq-PA/01-arquitectura-capas/README.md) |
+| 02 | Capa de Entidades | [Ver →](./manual-linq-PA/02-entidades/README.md) |
+| 03 | Capa de Datos con ADO.NET | [Ver →](./manual-linq-PA/03-capa-datos-sql/README.md) |
+| 04 | Capa de Datos con LINQ to SQL | [Ver →](./manual-linq-PA/04-capa-datos-linq/README.md) |
+| 05 | Capa de Datos con Entity Framework | [Ver →](./manual-linq-PA/05-capa-datos-ef/README.md) |
+| 06 | Lógica de Negocio | [Ver →](./manual-linq-PA/06-logica-negocio/README.md) |
+| 07 | Capa de Presentación | [Ver →](./manual-linq-PA/07-presentacion/README.md) |
+| 08 | Consultas LINQ Avanzadas | [Ver →](./manual-linq-PA/08-linq-consultas-avanzadas/README.md) |
+| 09 | Comparativa: ADO.NET vs LINQ vs EF | [Ver →](./manual-linq-PA/09-comparativa-tecnologias/README.md) |
+| 10 | Errores Comunes y Soluciones | [Ver →](./manual-linq-PA/10-errores-comunes/README.md) |
+| 11 | Ejercicios Resueltos | [Ver →](./manual-linq-PA/11-ejercicios-resueltos/README.md) |
+| 12 | Git Workflow para el Proyecto | [Ver →](./manual-linq-PA/12-git-workflow/README.md) |
 
 
 ---
